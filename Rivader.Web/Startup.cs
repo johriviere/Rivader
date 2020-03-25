@@ -7,6 +7,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Rivader.Domain.Collections;
+using Rivader.Domain.Services;
+using Rivader.Infra.Repositories;
 using Rivader.Infra.Storage;
 
 namespace Rivader.Web
@@ -26,6 +29,14 @@ namespace Rivader.Web
             services.AddDbContext<RivaderDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                 assembly => assembly.MigrationsAssembly(typeof(RivaderDbContext).Assembly.FullName)));
             services.AddControllers();
+
+            ConfigureCore(services);
+        }
+
+        private void ConfigureCore(IServiceCollection services)
+        {
+            services.AddScoped<ISpaceInvadersService, SpaceInvadersService>();
+            services.AddScoped<ISpaceInvadersRepository, SpaceInvadersRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
