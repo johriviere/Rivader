@@ -30,6 +30,12 @@ namespace Rivader.Web
                 assembly => assembly.MigrationsAssembly(typeof(RivaderDbContext).Assembly.FullName)));
             services.AddControllers();
 
+            services.AddControllers()
+                //https://stackoverflow.com/questions/59199593/net-core-3-0-possible-object-cycle-was-detected-which-is-not-supported
+                .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+
+
             ConfigureCore(services);
         }
 
@@ -37,6 +43,9 @@ namespace Rivader.Web
         {
             services.AddScoped<ISpaceInvadersService, SpaceInvadersService>();
             services.AddScoped<ISpaceInvadersRepository, SpaceInvadersRepository>();
+            services.AddScoped<ITranslationsService, TranslationsService>();
+            services.AddScoped<ITranslationsRepository, TranslationsRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

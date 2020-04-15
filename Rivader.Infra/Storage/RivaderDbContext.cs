@@ -13,6 +13,7 @@ namespace Rivader.Infra.Storage
             : base(options) { }
 
         public DbSet<SpaceInvader> SpaceInvaders { get; set; }
+		public DbSet<Translation> Translations { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
