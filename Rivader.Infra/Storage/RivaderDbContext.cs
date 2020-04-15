@@ -23,6 +23,8 @@ namespace Rivader.Infra.Storage
 
 			modelBuilder.HasDefaultSchema(DboSchema);
 			modelBuilder.ApplyConfiguration(new SpaceInvaderConfiguration());
+			modelBuilder.ApplyConfiguration(new TranslationConfiguration());
+			modelBuilder.ApplyConfiguration(new CulturedLabelConfiguration());
 
 			base.OnModelCreating(modelBuilder);
 		}
