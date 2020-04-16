@@ -1,10 +1,11 @@
 ﻿using Rivader.Domain.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Rivader.Domain.Collections
 {
     public interface ISpaceInvadersRepository
     {
-        IEnumerable<SpaceInvader> GetAll();
+        Task<IEnumerable<SpaceInvader>> GetAll();
     }
 }
