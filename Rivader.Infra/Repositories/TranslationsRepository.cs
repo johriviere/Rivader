@@ -32,7 +32,14 @@ namespace Rivader.Infra.Repositories
         {
             return await _context.Translations
                 .Include(t => t.CulturedLabels)
-                .FirstOrDefaultAsync(t => t.Id == 1);
+                .FirstOrDefaultAsync(t => t.Id == id);
+        }
+
+        public async Task<Translation> Insert(Translation entity)
+        {
+            _context.Add(entity);
+            await _context.SaveChangesAsync();
+            return entity;
         }
     }
 }

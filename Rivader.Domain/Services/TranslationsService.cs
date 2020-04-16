@@ -14,6 +14,11 @@ namespace Rivader.Domain.Services
             _translationsRepository = translationsRepository ?? throw new ArgumentNullException(nameof(translationsRepository));
         }
 
+        public async Task<Translation> Create(Translation translation)
+        {
+            return await _translationsRepository.Insert(translation);
+        }
+
         public async Task Delete(int id)
         {
             await _translationsRepository.Delete(id);

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Rivader.Domain.Models;
 using Rivader.Domain.Services;
 using System.Threading.Tasks;
 
@@ -18,9 +19,14 @@ namespace Rivader.Web.Controllers
 
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> Get(int id)
         {
             var result = await _translationsService.Get(id);
+            if (result == null)
+            {
+                return new NotFoundResult();
+            }
             return new JsonResult(result);
         }
 
@@ -30,6 +36,14 @@ namespace Rivader.Web.Controllers
         {
             await _translationsService.Delete(id);
             return new NoContentResult();
+        }
+
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<ActionResult> Post([FromBody] Translation translation)
+        {
+            var result = await _translationsService.Create(translation);
+            return new CreatedResult(string.Empty, result); // todo : location
         }
     }
 }

@@ -7,5 +7,6 @@ namespace Rivader.Domain.Services
     {
         Task<Translation> Get(int id);
         Task Delete (int id);
+        Task<Translation> Create(Translation translation);
     }
 }
