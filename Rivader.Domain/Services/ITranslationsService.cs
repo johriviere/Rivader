@@ -5,6 +5,7 @@ namespace Rivader.Domain.Services
 {
     public interface ITranslationsService
     {
-        Task<Translation> GetById(int id);
+        Task<Translation> Get(int id);
+        Task Delete (int id);
     }
 }

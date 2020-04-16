@@ -5,6 +5,7 @@ namespace Rivader.Domain.Collections
 {
     public interface ITranslationsRepository
     {
-        Task<Translation> GetById(int id);
+        Task<Translation> Get(int id);
+        Task Delete (int id);
     }
 }
