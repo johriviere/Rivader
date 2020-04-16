@@ -6,8 +6,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Rivader.Domain.Collections;
+using Rivader.Domain.Core;
 using Rivader.Domain.Services;
 using Rivader.Infra.Repositories;
 using Rivader.Infra.Storage;
@@ -28,13 +30,12 @@ namespace Rivader.Web
         {
             services.AddDbContext<RivaderDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                 assembly => assembly.MigrationsAssembly(typeof(RivaderDbContext).Assembly.FullName)));
-            services.AddControllers();
 
             services.AddControllers()
                 //https://stackoverflow.com/questions/59199593/net-core-3-0-possible-object-cycle-was-detected-which-is-not-supported
                 .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
-
+            services.TryAddScoped<IUnitOfWork, UnitOfWork>();
 
             ConfigureCore(services);
         }

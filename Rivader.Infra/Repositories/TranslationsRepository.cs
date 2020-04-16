@@ -24,8 +24,6 @@ namespace Rivader.Infra.Repositories
 
             _context.RemoveRange(translation.CulturedLabels);
             _context.Remove(translation);
-
-            await _context.SaveChangesAsync();
         }
 
         public async Task<Translation> Get(int id)
@@ -37,8 +35,7 @@ namespace Rivader.Infra.Repositories
 
         public async Task<Translation> Insert(Translation entity)
         {
-            _context.Add(entity);
-            await _context.SaveChangesAsync();
+            await _context.AddAsync(entity);
             return entity;
         }
     }
