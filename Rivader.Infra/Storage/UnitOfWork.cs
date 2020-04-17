@@ -23,6 +23,7 @@ namespace Rivader.Infra.Storage
             }
             catch (DbUpdateException ex)
             {
+                // https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8#switch-expressions
                 throw (ex.InnerException?.InnerException) switch
                 {
                     ArgumentException ae => ae,

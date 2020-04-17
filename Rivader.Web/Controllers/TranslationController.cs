@@ -23,7 +23,7 @@ namespace Rivader.Web.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult> Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
             var result = await _translationsService.Get(id);
             if (result == null)
@@ -35,7 +35,7 @@ namespace Rivader.Web.Controllers
 
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             await _translationsService.Delete(id);
             await _unitOfWork.SaveChangesAsync();
@@ -44,11 +44,13 @@ namespace Rivader.Web.Controllers
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<ActionResult> Post([FromBody] Translation translation)
+        public async Task<IActionResult> Post([FromBody] Translation translation)
         {
             var result = await _translationsService.Create(translation);
             await _unitOfWork.SaveChangesAsync();
-            return new CreatedResult(string.Empty, result); // todo : location
+
+            string location = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.Value}{HttpContext.Request.Path}/{result.Id}";
+            return new CreatedResult(location, result);
         }
     }
 }
