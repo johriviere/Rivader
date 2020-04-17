@@ -3,6 +3,7 @@ using Rivader.Domain.Collections;
 using Rivader.Domain.Models;
 using Rivader.Infra.Storage;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Rivader.Infra.Repositories
@@ -30,13 +31,30 @@ namespace Rivader.Infra.Repositories
         {
             return await _context.Translations
                 .Include(t => t.CulturedLabels)
-                .FirstOrDefaultAsync(t => t.Id == id);
+                .SingleOrDefaultAsync(t => t.Id == id);
         }
 
-        public async Task<Translation> Insert(Translation entity)
+        public async Task<Translation> Insert(Translation translation)
         {
-            await _context.AddAsync(entity);
-            return entity;
+            await _context.AddAsync(translation);
+            return translation;
+        }
+
+        public async Task Update(int id, Translation newTranslation)
+        {
+            var existingTranslation = await _context.Translations
+                .Include(t => t.CulturedLabels)
+                .SingleAsync(t => t.Id == id);
+
+            foreach (CulturedLabel newCulturedLabel in newTranslation.CulturedLabels)
+            {
+                var existingCulturedLabel = existingTranslation.CulturedLabels.SingleOrDefault(x => x.Id == newCulturedLabel.Id);
+                if (existingCulturedLabel != null)
+                {
+                    existingCulturedLabel.Value = newCulturedLabel.Value;
+                    existingCulturedLabel.Lcid = newCulturedLabel.Lcid;
+                }
+            }
         }
     }
 }

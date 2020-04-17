@@ -7,6 +7,7 @@ namespace Rivader.Domain.Collections
     {
         Task<Translation> Get(int id);
         Task Delete (int id);
-        Task<Translation> Insert(Translation entity);
+        Task<Translation> Insert(Translation translation);
+        Task Update(int id, Translation newTranslation);
     }
 }

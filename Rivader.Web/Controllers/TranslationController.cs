@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Rivader.Domain.Core;
+using Rivader.Domain.Core.Exceptions;
 using Rivader.Domain.Models;
 using Rivader.Domain.Services;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Rivader.Web.Controllers
@@ -51,6 +53,30 @@ namespace Rivader.Web.Controllers
 
             string location = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.Value}{HttpContext.Request.Path}/{result.Id}";
             return new CreatedResult(location, result);
+        }
+
+        [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Put(int id, [FromBody] Translation translation)
+        {
+            if (translation == null)
+            {
+                throw new BadRequestException($"translation is null.");
+            }
+            if (translation.CulturedLabels == null)
+            {
+                throw new BadRequestException($"translation does not contain any cultured label.");
+            }
+            if (translation.CulturedLabels.Any(x => x.Id == default))
+            {
+                throw new BadRequestException($"translation contains cultured label with invalid id.");
+            }
+
+            await _translationsService.Update(id, translation);
+            await _unitOfWork.SaveChangesAsync();
+            return new NoContentResult();
         }
     }
 }

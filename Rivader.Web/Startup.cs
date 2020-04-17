@@ -13,6 +13,7 @@ using Rivader.Domain.Core;
 using Rivader.Domain.Services;
 using Rivader.Infra.Repositories;
 using Rivader.Infra.Storage;
+using Rivader.Web.Core;
 
 namespace Rivader.Web
 {
@@ -46,18 +47,20 @@ namespace Rivader.Web
             services.AddScoped<ISpaceInvadersRepository, SpaceInvadersRepository>();
             services.AddScoped<ITranslationsService, TranslationsService>();
             services.AddScoped<ITranslationsRepository, TranslationsRepository>();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //}
 
             //app.UseHttpsRedirection();
+
+            // https://stackoverflow.com/questions/38630076/asp-net-core-web-api-exception-handling
+            app.UseMiddleware(typeof(ErrorHandlingMiddleware));
 
             app.UseRouting();
 

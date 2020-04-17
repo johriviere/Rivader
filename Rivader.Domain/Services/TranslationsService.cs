@@ -1,4 +1,5 @@
 ﻿using Rivader.Domain.Collections;
+using Rivader.Domain.Core.Exceptions;
 using Rivader.Domain.Models;
 using System;
 using System.Threading.Tasks;
@@ -27,6 +28,16 @@ namespace Rivader.Domain.Services
         public async Task<Translation> Get(int id)
         {
             return await _translationsRepository.Get(id);
+        }
+
+        public async Task Update(int id, Translation newTranslation)
+        {
+            Translation existingTranslation = await _translationsRepository.Get(id);
+            if (existingTranslation == null)
+            {
+                throw new NotFoundException($"translation {id} does not exist.");
+            }
+            await _translationsRepository.Update(id, newTranslation);
         }
     }
 }
