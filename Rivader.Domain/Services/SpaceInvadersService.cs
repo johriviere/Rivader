@@ -16,7 +16,7 @@ namespace Rivader.Domain.Services
 
         public async Task<IEnumerable<SpaceInvader>> GetAll()
         {
-            return _spaceInvadersRepository.GetAll();
+            return await _spaceInvadersRepository.GetAll();
         }
     }
 }

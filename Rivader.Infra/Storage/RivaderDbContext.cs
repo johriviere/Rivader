@@ -13,6 +13,7 @@ namespace Rivader.Infra.Storage
             : base(options) { }
 
         public DbSet<SpaceInvader> SpaceInvaders { get; set; }
+		public DbSet<Translation> Translations { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
@@ -23,6 +24,8 @@ namespace Rivader.Infra.Storage
 
 			modelBuilder.HasDefaultSchema(DboSchema);
 			modelBuilder.ApplyConfiguration(new SpaceInvaderConfiguration());
+			modelBuilder.ApplyConfiguration(new TranslationConfiguration());
+			modelBuilder.ApplyConfiguration(new CulturedLabelConfiguration());
 
 			base.OnModelCreating(modelBuilder);
 		}

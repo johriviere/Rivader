@@ -1,7 +1,9 @@
-﻿using Rivader.Domain.Collections;
+﻿using Microsoft.EntityFrameworkCore;
+using Rivader.Domain.Collections;
 using Rivader.Domain.Models;
 using Rivader.Infra.Storage;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Rivader.Infra.Repositories
 {
@@ -14,9 +16,10 @@ namespace Rivader.Infra.Repositories
             _context = context;
         }
 
-        public IEnumerable<SpaceInvader> GetAll()
+        public async Task<IEnumerable<SpaceInvader>> GetAll()
         {
-            return _context.SpaceInvaders;
+            return await _context.SpaceInvaders.ToListAsync();
+            //return await _context.Set<SpaceInvader>().ToListAsync();
         }
     }
 }

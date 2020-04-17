@@ -15,7 +15,7 @@ namespace Rivader.Web.Controllers
             _spaceInvadersService = spaceInvadersService;
         }
         [HttpGet]
-        public async Task<ActionResult> Get()
+        public async Task<IActionResult> Get()
         {
             var result = await _spaceInvadersService.GetAll();
             return new JsonResult(result);
