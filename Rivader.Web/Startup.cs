@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using Rivader.Domain.Collections;
 using Rivader.Domain.Core;
 using Rivader.Domain.Services;
@@ -36,6 +37,8 @@ namespace Rivader.Web
                 //https://stackoverflow.com/questions/59199593/net-core-3-0-possible-object-cycle-was-detected-which-is-not-supported
                 .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
+            services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Rivader API", Version = "v1" }));
+
             services.TryAddScoped<IUnitOfWork, UnitOfWork>();
 
             ConfigureCore(services);
@@ -58,6 +61,15 @@ namespace Rivader.Web
             //}
 
             //app.UseHttpsRedirection();
+
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Rivader API - v1");
+            });
+
 
             // https://stackoverflow.com/questions/38630076/asp-net-core-web-api-exception-handling
             app.UseMiddleware(typeof(ErrorHandlingMiddleware));

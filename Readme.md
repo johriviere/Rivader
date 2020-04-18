@@ -12,3 +12,8 @@ dotnet ef migrations remove --project Rivader.Infra\Rivader.Infra.csproj --start
 
 APPLY MIGRATION
 dotnet ef database update --project Rivader.Infra\Rivader.Infra.csproj --startup-project Rivader.Web\Rivader.Web.csproj
+
+
+SWAGGER
+-------
+https://{{host}}/swagger/index.html
