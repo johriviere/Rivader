@@ -17,6 +17,8 @@ namespace Rivader.Infra.Storage.Configurations
 
             builder.HasOne(c => c.Translation).WithMany(t => t.CulturedLabels)
                 .IsRequired();
+
+            builder.HasIndex(c => new { c.TranslationId, c.Lcid }).IsUnique();
         }
     }
 }
