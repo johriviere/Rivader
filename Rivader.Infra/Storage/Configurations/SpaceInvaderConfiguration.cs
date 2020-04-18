@@ -11,7 +11,9 @@ namespace Rivader.Infra.Storage.Configurations
             builder.ToTable("SpaceInvaders", RivaderDbContext.DboSchema);
             builder.HasKey(c => c.Id);
             builder.Property(c => c.Id).HasColumnName("Id");
-            builder.Property(c => c.Number).HasColumnName("Number");
+            builder.Property(c => c.Number).HasColumnName("Number").IsRequired();
+            builder.Property(c => c.Latitude).HasColumnName("Latitude").HasColumnType("decimal(8,5)");
+            builder.Property(c => c.Longitude).HasColumnName("Longitude").HasColumnType("decimal(8,5)");
         }
     }
 }
