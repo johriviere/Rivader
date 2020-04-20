@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Rivader.Infra.Storage;
 
 namespace Rivader.Infra.Migrations
 {
     [DbContext(typeof(RivaderDbContext))]
-    partial class RivaderDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200420161604_CreateDefaultValueForCity")]
+    partial class CreateDefaultValueForCity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -112,9 +114,6 @@ namespace Rivader.Infra.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CityId")
-                        .HasColumnType("int");
-
                     b.Property<string>("CountryCode")
                         .IsRequired()
                         .HasColumnType("nvarchar(3)")
@@ -134,8 +133,6 @@ namespace Rivader.Infra.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CityId");
 
                     b.HasIndex("CountryCode");
 
@@ -190,12 +187,6 @@ namespace Rivader.Infra.Migrations
 
             modelBuilder.Entity("Rivader.Domain.Models.SpaceInvader", b =>
                 {
-                    b.HasOne("Rivader.Domain.Models.City", "City")
-                        .WithMany()
-                        .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.HasOne("Rivader.Domain.Models.Country", "Country")
                         .WithMany()
                         .HasForeignKey("CountryCode")

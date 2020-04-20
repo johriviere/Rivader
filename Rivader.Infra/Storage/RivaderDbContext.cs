@@ -27,6 +27,7 @@ namespace Rivader.Infra.Storage
 			modelBuilder.ApplyConfiguration(new TranslationConfiguration());
 			modelBuilder.ApplyConfiguration(new CulturedLabelConfiguration());
 			modelBuilder.ApplyConfiguration(new CountryConfiguration());
+			modelBuilder.ApplyConfiguration(new CityConfiguration());
 
 			base.OnModelCreating(modelBuilder);
 		}

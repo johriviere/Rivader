@@ -22,6 +22,10 @@ namespace Rivader.Infra.Storage.Configurations
                     .HasForeignKey(s => s.CountryCode)
                     .OnDelete(DeleteBehavior.NoAction);
             builder.Property(s => s.CountryCode).HasMaxLength(3).HasDefaultValue("FRA");
+
+            builder.HasOne(s => s.City).WithMany().IsRequired()
+                .HasForeignKey(s => s.CityId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

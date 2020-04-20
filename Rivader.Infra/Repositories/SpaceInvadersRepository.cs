@@ -22,6 +22,9 @@ namespace Rivader.Infra.Repositories
                             .Include(s => s.Country)
                             .ThenInclude(c => c.Translation)
                             .ThenInclude(t => t.CulturedLabels)
+                            .Include(s => s.City)
+                            .ThenInclude(c => c.Translation)
+                            .ThenInclude(t => t.CulturedLabels)
                             .ToListAsync();
             //return await _context.Set<SpaceInvader>().ToListAsync();
         }

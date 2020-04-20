@@ -8,5 +8,7 @@
         public double? Longitude { get; set; }
         public string CountryCode { get; set; }
         public Country Country { get; set; }
+        public int CityId { get; set; }
+        public City City { get; set; }
     }
 }
