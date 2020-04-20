@@ -26,6 +26,7 @@ namespace Rivader.Infra.Storage
 			modelBuilder.ApplyConfiguration(new SpaceInvaderConfiguration());
 			modelBuilder.ApplyConfiguration(new TranslationConfiguration());
 			modelBuilder.ApplyConfiguration(new CulturedLabelConfiguration());
+			modelBuilder.ApplyConfiguration(new CountryConfiguration());
 
 			base.OnModelCreating(modelBuilder);
 		}
