@@ -17,7 +17,6 @@ namespace Rivader.Infra.Storage.Configurations
             builder.Property(s => s.Latitude).HasColumnName("Latitude").HasColumnType("decimal(8,5)");
             builder.Property(s => s.Longitude).HasColumnName("Longitude").HasColumnType("decimal(8,5)");
 
-
             builder.HasOne(s => s.Country).WithMany().IsRequired()
                     .HasForeignKey(s => s.CountryCode)
                     .OnDelete(DeleteBehavior.NoAction);
@@ -26,6 +25,10 @@ namespace Rivader.Infra.Storage.Configurations
             builder.HasOne(s => s.City).WithMany().IsRequired()
                 .HasForeignKey(s => s.CityId)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Property(s => s.Year).HasColumnName("Year");
+
+            builder.Property(s => s.Points).HasColumnName("Points");
         }
     }
 }

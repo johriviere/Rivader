@@ -10,5 +10,7 @@
         public Country Country { get; set; }
         public int CityId { get; set; }
         public City City { get; set; }
+        public short? Year { get; set; }
+        public short? Points { get; set; }
     }
 }
