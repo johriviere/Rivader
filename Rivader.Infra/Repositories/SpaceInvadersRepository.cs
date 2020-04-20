@@ -18,7 +18,11 @@ namespace Rivader.Infra.Repositories
 
         public async Task<IEnumerable<SpaceInvader>> GetAll()
         {
-            return await _context.SpaceInvaders.ToListAsync();
+            return await _context.SpaceInvaders
+                            .Include(s => s.Country)
+                            .ThenInclude(c => c.Translation)
+                            .ThenInclude(t => t.CulturedLabels)
+                            .ToListAsync();
             //return await _context.Set<SpaceInvader>().ToListAsync();
         }
     }
