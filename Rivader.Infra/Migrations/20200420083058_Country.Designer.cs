@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Rivader.Infra.Storage;
 
 namespace Rivader.Infra.Migrations
 {
     [DbContext(typeof(RivaderDbContext))]
-    partial class RivaderDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200420083058_Country")]
+    partial class Country
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -74,12 +76,6 @@ namespace Rivader.Infra.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CountryCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(3)")
-                        .HasMaxLength(3)
-                        .HasDefaultValue("FRA");
-
                     b.Property<decimal?>("Latitude")
                         .HasColumnName("Latitude")
                         .HasColumnType("decimal(8,5)");
@@ -93,8 +89,6 @@ namespace Rivader.Infra.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CountryCode");
 
                     b.ToTable("SpaceInvaders","dbo");
                 });
@@ -126,15 +120,6 @@ namespace Rivader.Infra.Migrations
                     b.HasOne("Rivader.Domain.Models.Translation", "Translation")
                         .WithMany("CulturedLabels")
                         .HasForeignKey("TranslationId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Rivader.Domain.Models.SpaceInvader", b =>
-                {
-                    b.HasOne("Rivader.Domain.Models.Country", "Country")
-                        .WithMany()
-                        .HasForeignKey("CountryCode")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
