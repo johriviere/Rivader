@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Rivader.Infra.Storage;
 
 namespace Rivader.Infra.Migrations
 {
     [DbContext(typeof(RivaderDbContext))]
-    partial class RivaderDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200420171010_SpaceInvaderYearPoints")]
+    partial class SpaceInvaderYearPoints
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
