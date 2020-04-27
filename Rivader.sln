@@ -15,13 +15,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{7F6668DA-5ED
 	ProjectSection(SolutionItems) = preProject
 		doc\DomainModel.md = doc\DomainModel.md
 		doc\UseCases.md = doc\UseCases.md
-		doc\UserStories.md = doc\UserStories.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tech", "tech", "{32AF447D-906D-495A-BEFA-142E983FFAB3}"
 	ProjectSection(SolutionItems) = preProject
 		doc\tech\ArchitectureWorkTrail.md = doc\tech\ArchitectureWorkTrail.md
 		doc\tech\Readme.md = doc\tech\Readme.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "userStories", "userStories", "{F5BEA729-901C-4DF1-AA10-B9712E5B068B}"
+	ProjectSection(SolutionItems) = preProject
+		doc\userStories\US_0001.txt = doc\userStories\US_0001.txt
+		US_0002.txt = US_0002.txt
 	EndProjectSection
 EndProject
 Global
@@ -49,6 +54,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{7F6668DA-5EDF-4AC3-B70A-2D8E9E2D9843} = {988CCE73-B4CE-48DB-99FA-9399EFC63CA0}
 		{32AF447D-906D-495A-BEFA-142E983FFAB3} = {7F6668DA-5EDF-4AC3-B70A-2D8E9E2D9843}
+		{F5BEA729-901C-4DF1-AA10-B9712E5B068B} = {7F6668DA-5EDF-4AC3-B70A-2D8E9E2D9843}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {741E5F59-9FEC-4A10-B583-CC9C6E910454}

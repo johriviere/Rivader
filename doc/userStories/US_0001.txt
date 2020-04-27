@@ -1,0 +1,43 @@
+### Utilisateur recherche un space invader ###
+
+En tant qu'utilisateur
+
+Dans l'UI, je veux pouvoir rechercher un space invader par son identifiant {City.code}_{SpaceInvader.Number}
+
+Afin de pouvoir visualiser ses propriétés (ville, pays, nombre de points, photo)
+
+
+Test d'acceptation
+------------------
+1. 
+Etant donné que je suis un utilisateur,
+Et que je suis dans la page de recherche,
+
+Quand je renseigne dans une barre de recherche un identifiant de space invader dans un format valide,
+Et que cet idenfiant correspond à un space invader présent en base de données, 
+Et que je clique sur un bouton rechercher,
+
+Alors doit s'afficher sur la page le space invader recherché
+soit au minimum ses propriétés suivantes : sa photo, son numéro, sa ville, son pays, son nombre de points, son année
+
+
+2. 
+Etant donné que je suis un utilisateur,
+Et que je suis sur la page de recherche,
+
+Quand je renseigne dans la barre de recherche un identifiant invalide (pas au format {City.code}_{SpaceInvader.Number})
+Et que je clique sur le bouton rechercher,
+
+Alors, un message indiquant que le format de l'identifiant est invalide doit s'afficher en rouge sur la page
+
+
+3.
+Etant donné que je suis un utilisateur,
+Et que je suis sur la page de recherche,
+
+Quand je renseigne dans la barre de recherche un identifiant valide,
+Et que cet identifiant n'est pas présent en base de donnée,
+Et que je clique sur le bouton rechercher,
+
+Alors, un message clair indiquant que le format de l'identifiant est valide, mais que le space invader n'est pas contenu dans la base de données
+doit s'afficher en rouge sur la page

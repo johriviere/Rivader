@@ -1,0 +1,25 @@
+### Administrateur importe une collection de space invaders ###
+
+En tant qu'administrateur
+
+Je veux pouvoir importer une collections de space invaders
+
+afin de pouvoir enrichir la base de données rapidement
+
+
+Test d'acceptation
+------------------
+1. 
+Etant donné que je suis un administrateur,
+Et que j'ai un fichier d'import de space invaders
+	dans un format valide
+	contenant au moins 2 spaces invaders
+	et que ces spaces invaders ne sont pas des doublons (détection des doublons par identifiant {City.code}_{SpaceInvader.Number})
+
+
+Quand j'appelle dans la route d'API d'import d'une collection de space invaders avec le fichier d'import en paramètre
+
+Alors les spaces invaders doivent être correctement importés en base de données
+Et un message de succès de l'import doit être affiché
+
+
