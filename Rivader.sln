@@ -26,7 +26,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "userStories", "userStories", "{F5BEA729-901C-4DF1-AA10-B9712E5B068B}"
 	ProjectSection(SolutionItems) = preProject
 		doc\userStories\US_0001.txt = doc\userStories\US_0001.txt
-		US_0002.txt = US_0002.txt
+		doc\userStories\US_0002.txt = doc\userStories\US_0002.txt
 	EndProjectSection
 EndProject
 Global
